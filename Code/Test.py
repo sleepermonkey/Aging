@@ -83,7 +83,7 @@ def train_model(annotation_names,pir_locations):
     prior_probs = np.zeros(len(annotation_names))
 
     for ii in range(1, 2):
-        meta = json.load(open(os.path.join('../public_data', 'train', str(ii).zfill(5), 'meta.json')))
+        meta = json.load(open(os.path.join('../public_data555', 'train', str(ii).zfill(5), 'meta.json')))
         starts = range(math.ceil(meta['end']))
         ends = range(1, math.ceil(meta['end']) + 1)
 
@@ -103,7 +103,7 @@ def train_model(annotation_names,pir_locations):
                 for index, row in df_period.iterrows():
                     acceleration.loc[acceleration.t.between(start, end) == True,annotation_names[row['index']]] += 1
 
-        df = pd.read_csv(os.path.join('../public_data555', 'train', str(ii).zfill(5), 'targets.csv'))
+        df = pd.read_csv(os.path.join('../public_data', 'train', str(ii).zfill(5), 'targets.csv'))
 
         non_nans = df[df.isnull().any(axis=1) == False]
         prior_probs += np.asarray(non_nans.mean(axis=0)[annotation_names].tolist())
