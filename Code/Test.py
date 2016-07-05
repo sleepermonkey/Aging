@@ -82,7 +82,7 @@ def load_locations(directory):
 def train_model(annotation_names,pir_locations):
     prior_probs = np.zeros(len(annotation_names))
 
-    for ii in range(1, 2):
+    for ii in range(1, 11):
         meta = json.load(open(os.path.join('../public_data', 'train', str(ii).zfill(5), 'meta.json')))
         starts = range(math.ceil(meta['end']))
         ends = range(1, math.ceil(meta['end']) + 1)
@@ -112,7 +112,7 @@ def train_model(annotation_names,pir_locations):
 
     weight = json.load(open(os.path.join('../public_data', 'class_weights.json')))
     TotalScore = 0
-    for ii in range(1, 2):
+    for ii in range(1, 11):
         df = pd.read_csv(os.path.join('../public_data', 'train', str(ii).zfill(5), 'targets.csv'))
         df = df.drop(['start', 'end'], axis=1)
         print(str(ii) + ' ' + str(brier_score(df,prior_probs,weight)))
