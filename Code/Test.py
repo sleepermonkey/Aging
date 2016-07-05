@@ -129,4 +129,4 @@ train_model(annotation_names,location_names)
 
 elapsed = (time.time() - start_time)
 print('Task completed in:', datetime.timedelta(seconds=elapsed))
-#os.system('say "Finished"')
+os.system('say "Finished"')
